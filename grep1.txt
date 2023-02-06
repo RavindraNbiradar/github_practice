@@ -1,0 +1,55 @@
+#1
+search for a phrase or text in an given input file
+grep “text” filename
+#2
+search for directories and sub-directory to find the input phrase
+grep -R “text” directory\
+#3
+find the lines where the whole word is matching and print lines
+grep -w “phrase” filename
+#4 output only the matching words rather than lines
+grep -o “phrase” filename
+#5 ignore case while matching the phrase
+grep -I “phrase” filename
+#6 give me the lines which are not matching with input phrase
+grep -v “phrase” filename
+#7 get me the count of matching phrase in the given file
+grep -c “phrase” filename
+#8 print the line numbers where phrase was found, along with lines in output
+grep -n “phrase” filename
+ In grep along with text / phrase matches in place of it we can use regular expressions also for matching phrase with file conte
+[] = any one of the characters
+[l-u] = matches any one of the range characters
+^ = this pattern must apper at the beginning of the line
+$ = this pattern must apper at the end of each line
+. =matches any one character
+\= escape character
+*=zero or more occurrences
+.*=nothing or any number of characters
+---------------------------------------------------------------------------------
+-  grep “boy” story.txt =print all the lines where if the word contains boy
+-  grep “b*” story.txt = print all the lines if the word contains b
+-  grep “^DR” transaction.txt
+-  grep -v “^CR” transaction
+-  grep “^CR” transaction = prints only the lines beginning with CR
+-  grep “ICICBANK$” transaction = prints only the lines ending with ICICIBANK
+-  grep “ICICI*” filename =wrong
+grep “ICIC[0-9]*$” filename = display all lines ending with icici(1) with single digit of 0-9
+ 
+-------
+-  grep “icici[0-9]*$” branch-transaction.txt =here [0-9]  this expression can occur multiple times there
+-  grep “^cr.*icic[0-9]*$” branch-transaction.txt = begin with cr end with icic[of any numbers] display only those lines.
+-  grep “Agarwal brothers” branch-transaction.txt = only Agarwal will come
+-  grep “a[a-z]*” branch-transaction.txt = wrong
+-  ls -l
+-  ls -l |grep “^d” = it will print the directory
+-  ls -l | grep “^-“ = it will print the files only
+-  ls -l | grep -w “May” = it will print only files created in may month (-w = word)
+-  ls -l | grep “^d.*May” = it will print directory with may month creation
+-  ls -l | grep -w “^d.*May” = same as above
+-  find . -name “*.txt”  -exec grep -Riwn “was” {} \;
+
+
+https://www.youtube.com/watch?v=OO2Avn1g5Tw
+
+https://www.youtube.com/watch?v=m4G3MLK8l4s
